@@ -4,7 +4,7 @@ namespace TowerInject
 {
     public static class RegistratorExtensions
     {
-        public static void Register(this IRegistrator registrator, 
+        public static void Register(this IRegistrator registrator,
            Type serviceType,
            Type implementationType)
         {
@@ -24,7 +24,7 @@ namespace TowerInject
             registrator.Register<TService, TService>(null);
         }
 
-        public static void Register<TService>(this IRegistrator registrator, 
+        public static void Register<TService>(this IRegistrator registrator,
             ILifecycle lifecycle)
         {
             registrator.Register<TService, TService>(lifecycle, RegistrationConflictBehavior.Default);
@@ -62,6 +62,24 @@ namespace TowerInject
             where TImplementation : TService
         {
             registrator.Register(typeof(TService), typeof(TImplementation), Lifecycle.Singleton);
+        }
+
+        public static void RegisterSingleton<TService, TImplementation>(this IRegistrator registrator, RegistrationConflictBehavior behavior)
+            where TImplementation : TService
+        {
+            registrator.Register(typeof(TService), typeof(TImplementation), Lifecycle.Singleton, behavior);
+        }
+
+        public static void RegisterTransient<TService, TImplementation>(this IRegistrator registrator)
+          where TImplementation : TService
+        {
+            registrator.Register(typeof(TService), typeof(TImplementation), Lifecycle.Transient);
+        }
+
+        public static void RegisterTransient<TService, TImplementation>(this IRegistrator registrator, RegistrationConflictBehavior behavior)
+            where TImplementation : TService
+        {
+            registrator.Register(typeof(TService), typeof(TImplementation), Lifecycle.Transient, behavior);
         }
 
         public static void Register<TService, TImplementation>(this IRegistrator registrator,

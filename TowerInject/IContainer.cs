@@ -1,7 +1,12 @@
-﻿namespace TowerInject
+﻿using System;
+
+namespace TowerInject
 {
-    public interface IContainer : IResolver, IRegistrator
+    /// <summary>
+    /// Represents the DependencyInjection or IoC container.
+    /// </summary>
+    public interface IContainer : IResolver, IRegistrator, IDisposable
     {
-        
+
     }
 }

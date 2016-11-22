@@ -18,7 +18,7 @@ namespace TowerInject
         IRegistration CreateRegistration(Type serviceType, Type implementationType);
 
         /// <summary>
-        /// Creates an instance resolver based on the given information.
+        /// Creates an instance resolver based on the given parameters.
         /// </summary>
         /// <param name="factory">The factory used to create an instance of the service when needed.</param>
         /// <param name="registration">The registration information for a service.</param>
