@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Container.cs" />
     <Compile Include="IConstructorSelector.cs" />
-    <Compile Include="IScope.cs" />
     <Compile Include="LifecycleType.cs" />
     <Compile Include="RegistratorExtensions.cs" />
     <Compile Include="ContainerOptions.cs" />

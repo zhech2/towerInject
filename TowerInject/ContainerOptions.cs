@@ -6,7 +6,7 @@
     public class ContainerOptions
     {
         public ILifecycle DefaultLifecycle;
-        public RegistrationConflictBehavior DefaultRegistrationBehavior;
+        public RegistrationConflictBehavior DefaultRegistrationConflictBehavior;
         public IConstructorSelector ConstructorSelector;
 
         /// <summary>
@@ -14,7 +14,7 @@
         /// </summary>
         public ContainerOptions()
         {
-            DefaultRegistrationBehavior = RegistrationConflictBehavior.Throw;
+            DefaultRegistrationConflictBehavior = RegistrationConflictBehavior.Throw;
             EnsureDefaults();
         }
 

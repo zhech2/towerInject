@@ -6,7 +6,7 @@ namespace TowerInject
 {
     /// <summary>
     /// Creates Singleton services.  Each time one is requested the same instance
-    /// will be returned.  Scoped to the Container.
+    /// will be returned.
     /// </summary>
     public sealed class SingletonLifecycle : ILifecycle
     {
