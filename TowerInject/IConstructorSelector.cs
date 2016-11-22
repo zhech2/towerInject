@@ -12,7 +12,7 @@ namespace TowerInject
         /// Selects from the given type the constructor that will be used to create an instance of the Service.
         /// </summary>
         /// <param name="type">The type of the service</param>
-        /// <returns></returns>
+        /// <returns>The constructorInfo representing the chosen constructor.</returns>
         ConstructorInfo SelectConstructor(Type type);
     }
 }

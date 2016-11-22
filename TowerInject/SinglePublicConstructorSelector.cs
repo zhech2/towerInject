@@ -3,8 +3,19 @@ using System.Reflection;
 
 namespace TowerInject
 {
+    /// <summary>
+    /// Constructor Selector for types with one publich constructor.
+    /// </summary>
+    /// <remarks>
+    /// For types without one public constructor InvalidOperationExceptions will be thrown.
+    /// </remarks>
     public class SinglePublicConstructorSelector : IConstructorSelector
     {
+        /// <summary>
+        /// Selects from the given type the constructor that will be used to create an instance of the Service.
+        /// </summary>
+        /// <param name="type">The type of the service</param>
+        /// <returns>The constructorInfo representing the chosen constructor.</returns>
         public ConstructorInfo SelectConstructor(Type type)
         {
             if (type == null)
