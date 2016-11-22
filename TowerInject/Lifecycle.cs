@@ -7,21 +7,16 @@
 
         public static ILifecycle GetByType(LifecycleType lifecycleType)
         {
-            ILifecycle lifecycle;
             switch (lifecycleType)
             {
                 case LifecycleType.Singleton:
-                    lifecycle = Lifecycle.Singleton;
-                    break;
+                    return Lifecycle.Singleton;
                 case LifecycleType.Transient:
-                    lifecycle = Lifecycle.Transient;
-                    break;
+                    return Lifecycle.Transient;
                 default:
-                    lifecycle = null;
-                    break;
+                case LifecycleType.Default:
+                    return null;
             }
-
-            return lifecycle;
         }
     }
 }
