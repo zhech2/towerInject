@@ -10,7 +10,7 @@ namespace TowerInject
     public interface ILifecycle
     {
         /// <summary>
-        /// Create a registration for based on this lifecycle for the service and implementation types.
+        /// Create a registration for based on the lifecycle for the service and implementation types.
         /// </summary>
         /// <param name="serviceType">The type, base type or interface of the service.</param>
         /// <param name="implementationType">The implementation of <paramref name="serviceType"/>.</param>
