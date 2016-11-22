@@ -59,9 +59,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainerOptionsTests.cs" />
     <Compile Include="ContainerTests.cs" />
+    <Compile Include="LifecycleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectionFactoryTests.cs" />
+    <Compile Include="RegisterExtensionsTests.cs" />
+    <Compile Include="SinglePublicConstructorSelectorTests.cs" />
     <Compile Include="TestClasses.cs" />
+    <Compile Include="SingletonLifecycleTests.cs" />
+    <Compile Include="TransientLifecycleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

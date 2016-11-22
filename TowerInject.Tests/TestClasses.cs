@@ -23,6 +23,17 @@ namespace TowerInject.Tests
 
     public class NullEmailService : IEmailService
     {
+
+    }
+
+    public class DisposableEmailService : IEmailService, IDisposable
+    {
+        public bool IsDisposed { get; private set; }
+
+        public void Dispose()
+        {
+            IsDisposed = true;
+        }
     }
 
     public interface ICalculator
@@ -56,8 +67,31 @@ namespace TowerInject.Tests
 
         public UsersController(ICalculator calculator, IEmailService emailService)
         {
-            Calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
-            EmailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
+            if (calculator == null)
+            {
+                throw new ArgumentNullException(nameof(calculator));
+            }
+
+            if (emailService == null)
+            {
+                throw new ArgumentNullException(nameof(emailService));
+            }
+
+            Calculator = calculator;
+            EmailService = emailService;
+        }
+    }
+
+    public interface IService
+    {
+
+    }
+
+    public class ClassNoPublicCtors : IService
+    {
+        protected ClassNoPublicCtors()
+        {
+
         }
     }
 }
