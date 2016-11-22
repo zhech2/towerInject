@@ -45,22 +45,45 @@ namespace TowerInject
         /// </summary>
         public Container(ContainerOptions options, IFactoryProvider factoryProvider)
         {
-            _options = options ?? throw new ArgumentNullException(nameof(options));
+            if (options == null)
+            {
+                throw new ArgumentNullException(nameof(options));
+            }
 
             if (factoryProvider == null)
             {
                 throw new ArgumentNullException(nameof(factoryProvider));
             }
 
+            _options = options;
             _options.EnsureDefaults();
             _factory = factoryProvider.CreateFactory(this);
         }
 
+        /// <summary>
+        /// Registers type <paramref name="implementationType"/> to be created when 
+        /// <paramref name="serviceType" /> is resolved.
+        /// </summary>
+        /// <param name="serviceType">The basetype or interface to register.</param>
+        /// <param name="implementationType">The type that will be created or returned when resolving the service type.</param>
+        /// <param name="lifecycle">The lifecycle object used to create the <see cref="IInstanceResolver"/>s and <see cref="InstanceResolver"/>s.</param>
+        /// <param name="conflictBehavior">The behavior to use when there is another type already registered for the given service type.</param>
+        /// <remarks>
+        /// See <seealso cref="RegistratorExtensions"/> for additional ways to register types.
+        /// </remarks>
         public void Register(Type serviceType,
             Type implementationType,
             ILifecycle lifecycle,
-            RegistrationConflictBehavior behavior)
+            RegistrationConflictBehavior conflictBehavior)
         {
+            if (serviceType == null)
+            {
+                throw new ArgumentNullException(nameof(serviceType));
+            }
+            if (implementationType == null)
+            {
+                throw new ArgumentNullException(nameof(implementationType));
+            }
             if (!serviceType.IsAssignableFrom(implementationType))
             {
                 throw new InvalidOperationException($"Cannot register '{implementationType.FullName}' as '{serviceType.FullName}' because it does not implement the service type.");
@@ -76,11 +99,11 @@ namespace TowerInject
                 {
                     if (oldRegistration != null)
                     {
-                        behavior = behavior == RegistrationConflictBehavior.Default
+                        conflictBehavior = conflictBehavior == RegistrationConflictBehavior.Default
                             ? _options.DefaultRegistrationBehavior
-                            : behavior;
+                            : conflictBehavior;
 
-                        switch (behavior)
+                        switch (conflictBehavior)
                         {
                             case RegistrationConflictBehavior.Keep:
                                 return oldRegistration;
@@ -96,9 +119,15 @@ namespace TowerInject
                 });
         }
 
+        /// <summary>
+        /// Gets or creates the instance registered for the given type.
+        /// </summary>
+        /// <param name="type">The type, base type or interface used to get or create the registered implementation.</param>
+        /// <returns></returns>
         public object Resolve(Type type)
         {
             var resolver = _instanceResolverMap.GetOrAdd(type, getInstanceResolver);
+
             return resolver?.Resolve();
         }
 
@@ -118,9 +147,9 @@ namespace TowerInject
             var constructor = _options.ConstructorSelector.SelectConstructor(registration.ImplementationType);
             var paramResolvers = getParameterResolvers(dependencyStack, registration, constructor, throwOnMissing);
 
-            return registration?.Lifecycle?.CreateInstanceResolver(_factory, 
-                registration, 
-                constructor, 
+            return registration?.Lifecycle?.CreateInstanceResolver(_factory,
+                registration,
+                constructor,
                 paramResolvers);
         }
 
@@ -156,14 +185,32 @@ namespace TowerInject
             }
         }
 
-        IInstanceResolver IInstanceResolverProvider.GetInstanceResolver(Stack<Type> cycles, Type serviceType, bool throwOnMissing)
+        IInstanceResolver IInstanceResolverProvider.GetInstanceResolver(Stack<Type> dependencyStack, Type serviceType, bool throwOnMissing)
         {
-            return getInstanceResolver(cycles, serviceType, throwOnMissing);
+            return getInstanceResolver(dependencyStack, serviceType, throwOnMissing);
         }
 
         object IServiceProvider.GetService(Type serviceType)
         {
             return Resolve(serviceType);
+        }
+
+        /// <summary>
+        /// Disposes of all types marked as IDisposable based on the behavior of the associated Lifecycle.
+        /// </summary>
+        public void Dispose()
+        {
+            foreach (var resolverPair in _instanceResolverMap)
+            {
+                var disposable = resolverPair.Value as IDisposable;
+                if (disposable != null)
+                {
+                    disposable.Dispose();
+                }
+            }
+
+            _instanceResolverMap.Clear();
+            _registrationMap.Clear();
         }
     }
 }
