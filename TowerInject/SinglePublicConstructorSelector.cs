@@ -7,6 +7,11 @@ namespace TowerInject
     {
         public ConstructorInfo SelectConstructor(Type type)
         {
+            if (type == null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
+
             var constructors = type.GetConstructors();
 
             if (constructors.Length == 0)
