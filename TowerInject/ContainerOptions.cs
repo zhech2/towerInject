@@ -1,11 +1,26 @@
 ﻿namespace TowerInject
 {
+    /// <summary>
+    /// Options for customizing the behavior of the <see cref="Container"/>. 
+    /// </summary>
     public class ContainerOptions
     {
-        public ILifecycle DefaultLifecycle = Lifecycle.Transient;
-        public RegistrationConflictBehavior DefaultRegistrationBehavior = RegistrationConflictBehavior.Throw;
-        public IConstructorSelector ConstructorSelector = new SinglePublicConstructorSelector();
+        public ILifecycle DefaultLifecycle;
+        public RegistrationConflictBehavior DefaultRegistrationBehavior;
+        public IConstructorSelector ConstructorSelector;
 
+        /// <summary>
+        /// Initializes an instance of the <see cref="ContainerOptions"/> class. 
+        /// </summary>
+        public ContainerOptions()
+        {
+            DefaultRegistrationBehavior = RegistrationConflictBehavior.Throw;
+            EnsureDefaults();
+        }
+
+        /// <summary>
+        /// Ensures that there is a default for each option.
+        /// </summary>
         public void EnsureDefaults()
         {
             if (DefaultLifecycle == null)
@@ -14,7 +29,7 @@
             }
 
             if (ConstructorSelector == null)
-            { 
+            {
                 ConstructorSelector = new SinglePublicConstructorSelector();
             }
         }
