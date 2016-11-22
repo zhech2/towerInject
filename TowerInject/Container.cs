@@ -88,6 +88,10 @@ namespace TowerInject
             {
                 throw new InvalidOperationException($"Cannot register '{implementationType.FullName}' as '{serviceType.FullName}' because it does not implement the service type.");
             }
+            if (implementationType.IsAbstract || implementationType.IsInterface)
+            {
+                throw new InvalidOperationException($"Cannot create an instance of type '{implementationType.FullName}'.");
+            }
 
             lifecycle = lifecycle ?? _options.DefaultLifecycle;
 
@@ -100,7 +104,7 @@ namespace TowerInject
                     if (oldRegistration != null)
                     {
                         conflictBehavior = conflictBehavior == RegistrationConflictBehavior.Default
-                            ? _options.DefaultRegistrationBehavior
+                            ? _options.DefaultRegistrationConflictBehavior
                             : conflictBehavior;
 
                         switch (conflictBehavior)

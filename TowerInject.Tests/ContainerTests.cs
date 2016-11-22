@@ -39,6 +39,13 @@ namespace TowerInject.Tests
         }
 
         [Fact]
+        public void Register_WithServiceTypeAndImplementation_AsInterface_ShouldThrowInvalidOperationException()
+        {
+            Container sut = createSut();
+            Assert.Throws<InvalidOperationException>(() => sut.Register<IEmailService>());
+        }
+
+        [Fact]
         public void Register_WhenRegisteringWithNullLifecycle_ShouldUseDefaultLifecycle()
         {
             Container sut = createSut();
