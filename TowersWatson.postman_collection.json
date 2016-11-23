@@ -35,22 +35,20 @@
 			"id": "b6f5536a-2b86-3018-8aaa-83b5702ff259",
 			"headers": "Content-Type: application/json\n",
 			"url": "http://localhost:44813/api/booking",
-			"pathVariables": {},
 			"preRequestScript": null,
+			"pathVariables": {},
 			"method": "POST",
-			"collectionId": "77d37174-0093-360f-d94c-4e8c3064c0d4",
 			"data": [],
 			"dataMode": "raw",
-			"name": "http://localhost:44813/api/booking",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1479859549476,
-			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"rawModeData": "{\n\t\"flights\": [\n\t\t{\n\t\t\t\"origin\": \"SLC\",\n\t\t\t\"destination\": \"DEN\",\n\t\t\t\"departureDateTime\": \"2016-11-22\",\n\t\t\t\"arrivalDateTiem\": \"2016-11-25\"\n\t\t}\n\t],\n\t\"passengers\": [\n\t\t{\n\t\t\t\"name\": {\n\t\t\t\t\"first\": \"First\",\n\t\t\t\t\"middle\": \"Middle\",\n\t\t\t\t\"last\": \"Last\"\n\t\t\t}\n\t\t}\n\t]\n}"
+			"time": 1479870149826,
+			"name": "http://localhost:44813/api/booking",
+			"description": "",
+			"collectionId": "77d37174-0093-360f-d94c-4e8c3064c0d4",
+			"responses": [],
+			"rawModeData": "{\n\t\"flights\": [\n\t\t{\n\t\t\t\"origin\": \"SLC\",\n\t\t\t\"destination\": \"DEN\",\n\t\t\t\"departureDateTime\": \"2016-11-22\",\n\t\t\t\"arrivalDateTime\": \"2016-11-25\"\n\t\t}\n\t],\n\t\"passengers\": [\n\t\t{\n\t\t\t\"name\": {\n\t\t\t\t\"first\": \"First\",\n\t\t\t\t\"middle\": \"Middle\",\n\t\t\t\t\"last\": \"Last\"\n\t\t\t}\n\t\t}\n\t]\n}"
 		}
 	]
 }
