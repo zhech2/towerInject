@@ -27,8 +27,7 @@ Overview
 The Container is made up of an IRegistrator and IResolver.  
 
 The registrator registers the services with the container and creates the registration based on the lifecycle.
-
-The resolver looks for a specific IInstanceResolver which is the combination of the Registration and the ILifecycle.  And then gets or creates the instance based on the IInstanceProvider.  
+The resolver looks for a specific IInstanceResolver which is the combination of the Registration and the ILifecycle.  
 
 IInstanceResolver will get or create an instance based on it's lifetime.  
 
@@ -41,6 +40,11 @@ TransientLifecycle will create an IInstanceResolver for each type and will retur
 The IInstanceResolvers are cached by the Container.
 
 If there is a cycle in the services dependencies it will throw an InvalidOperationException.
+ 
+Controller Example
+------------------
+BookingController is an example that uses the Container to create dependencies.
+TowersWatson.postman_collection.json is a collection of postman requests that can be used to test.
 
 Future Features
 -------------------

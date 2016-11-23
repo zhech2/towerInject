@@ -40,7 +40,7 @@ TransientLifecycle will create an IInstanceResolver for each type and will retur
 The IInstanceResolvers are cached by the Container.
 
 If there is a cycle in the services dependencies it will throw an InvalidOperationException.
-
+ 
 Controller Example
 ------------------
 BookingController is an example that uses the Container to create dependencies.
