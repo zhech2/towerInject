@@ -135,6 +135,13 @@ namespace TowerInject
             return resolver?.Resolve();
         }
 
+        private object resolveWithoutThrow(Type type)
+        {
+            var resolver = _instanceResolverMap.GetOrAdd(type, t => getInstanceResolver(new Stack<Type>(), t, throwOnMissing: false));
+
+            return resolver?.Resolve();
+        }
+
         private IInstanceResolver getInstanceResolver(Type type)
         {
             return getInstanceResolver(new Stack<Type>(), type, throwOnMissing: true);
@@ -143,18 +150,25 @@ namespace TowerInject
         private IInstanceResolver getInstanceResolver(Stack<Type> dependencyStack, Type type, bool throwOnMissing)
         {
             IRegistration registration;
-            if (!_registrationMap.TryGetValue(type, out registration))
+            if (!_registrationMap.TryGetValue(type, out registration) && throwOnMissing)
             {
                 throw new InvalidOperationException($"Could not resolve service of type '{type.FullName}'");
             }
 
-            var constructor = _options.ConstructorSelector.SelectConstructor(registration.ImplementationType);
-            var paramResolvers = getParameterResolvers(dependencyStack, registration, constructor, throwOnMissing);
+            if (registration == null)
+            {
+                return null;
+            }
+            else
+            { 
+                var constructor = _options.ConstructorSelector.SelectConstructor(registration.ImplementationType);
+                var paramResolvers = getParameterResolvers(dependencyStack, registration, constructor, throwOnMissing);
 
-            return registration?.Lifecycle?.CreateInstanceResolver(_factory,
-                registration,
-                constructor,
-                paramResolvers);
+                return registration.Lifecycle?.CreateInstanceResolver(_factory,
+                    registration,
+                    constructor,
+                    paramResolvers);
+            }
         }
 
         private IEnumerable<IInstanceResolver> getParameterResolvers(Stack<Type> dependencyStack,
@@ -196,7 +210,7 @@ namespace TowerInject
 
         object IServiceProvider.GetService(Type serviceType)
         {
-            return Resolve(serviceType);
+            return resolveWithoutThrow(serviceType);
         }
 
         /// <summary>

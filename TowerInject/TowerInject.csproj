@@ -65,8 +65,5 @@
     <Compile Include="SingletonLifecycle.cs" />
     <Compile Include="TransientLifecycle.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Readme.md" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

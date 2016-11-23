@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.25920.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{F9D66619-F986-4A2E-8676-96BD1C287551}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerInject", "TowerInject\TowerInject.csproj", "{312419BC-0E08-4B9E-A3AF-E21CD3C38DF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerInject.Tests", "TowerInject.Tests\TowerInject.Tests.csproj", "{19BD8525-B58A-4808-8485-B757811F1050}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerInject.Web", "TowerInject.Web\TowerInject.Web.csproj", "{E6B564FB-7194-4478-AEF6-932895B326DA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerInject.Web.Mvc", "TowerInject.Web.Mvc\TowerInject.Web.Mvc.csproj", "{4C8A3878-9229-4FE5-8DFD-1925CBE30833}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerInject.WebApi", "TowerInject.WebApi\TowerInject.WebApi.csproj", "{9046D28B-E59C-4D56-981E-F52CCC2CCC68}"
 EndProject
@@ -33,14 +29,6 @@ Global
 		{19BD8525-B58A-4808-8485-B757811F1050}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19BD8525-B58A-4808-8485-B757811F1050}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19BD8525-B58A-4808-8485-B757811F1050}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6B564FB-7194-4478-AEF6-932895B326DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6B564FB-7194-4478-AEF6-932895B326DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6B564FB-7194-4478-AEF6-932895B326DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6B564FB-7194-4478-AEF6-932895B326DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C8A3878-9229-4FE5-8DFD-1925CBE30833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C8A3878-9229-4FE5-8DFD-1925CBE30833}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C8A3878-9229-4FE5-8DFD-1925CBE30833}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C8A3878-9229-4FE5-8DFD-1925CBE30833}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9046D28B-E59C-4D56-981E-F52CCC2CCC68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9046D28B-E59C-4D56-981E-F52CCC2CCC68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9046D28B-E59C-4D56-981E-F52CCC2CCC68}.Release|Any CPU.ActiveCfg = Release|Any CPU
