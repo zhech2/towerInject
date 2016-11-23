@@ -52,7 +52,6 @@
     <Compile Include="IInstanceResolver.cs" />
     <Compile Include="IInstanceResolverProvider.cs" />
     <Compile Include="ILifecycle.cs" />
-    <Compile Include="ILifecycleFactory.cs" />
     <Compile Include="IRegistration.cs" />
     <Compile Include="IRegistrator.cs" />
     <Compile Include="IResolver.cs" />
