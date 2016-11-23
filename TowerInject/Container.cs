@@ -7,7 +7,7 @@ using System.Reflection;
 namespace TowerInject
 {
     /// <summary>
-    /// A simple Dependency Injection or IOC container.
+    /// A simple Dependency Injection or IoC container.
     /// </summary>
     public sealed class Container : IContainer,
         IServiceProvider,
@@ -160,7 +160,7 @@ namespace TowerInject
                 return null;
             }
             else
-            { 
+            {
                 var constructor = _options.ConstructorSelector.SelectConstructor(registration.ImplementationType);
                 var paramResolvers = getParameterResolvers(dependencyStack, registration, constructor, throwOnMissing);
 

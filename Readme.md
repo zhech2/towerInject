@@ -57,3 +57,4 @@ Future Features
 * Open Generics: IFoo<>, Foo<>
 * Detect lifetime mismatch
 * Execute function after instance creation
+* ExpressionTreeFactory for better performance
