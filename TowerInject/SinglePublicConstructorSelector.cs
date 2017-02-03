@@ -4,7 +4,7 @@ using System.Reflection;
 namespace TowerInject
 {
     /// <summary>
-    /// Constructor Selector for types with one publich constructor.
+    /// Constructor Selector for types with one public constructor.
     /// </summary>
     /// <remarks>
     /// For types without one public constructor InvalidOperationExceptions will be thrown.
