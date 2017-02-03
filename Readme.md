@@ -1,4 +1,4 @@
-﻿# Tower Injector
+﻿# Tower Inject
 
 Tower Injector is a simple Dependency Injection or IoC container.
 
